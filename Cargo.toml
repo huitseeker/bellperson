@@ -32,13 +32,12 @@ digest = "0.10.6"
 bincode = "1.3.1"
 serde = { version = "1.0", features = ["derive"] }
 sha2 = "0.10.6"
-pairing = "0.22"
-#ec-gpu = { version = "0.2.0" }
-#ec-gpu = { path = "../ec-gpu/ec-gpu" }
-ec-gpu = { git = "https://github.com/leonardoalt/ec-gpu/" }
-#ec-gpu-gen = { version = "0.5.1" }
-#ec-gpu-gen = { path = "../ec-gpu/ec-gpu-gen" }
-ec-gpu-gen = { git = "https://github.com/leonardoalt/ec-gpu/" }
+pairing = "0.23"
+## DO NOT COMMIT
+blstrs = { version = "0.6.0", features = ["__private_bench"] }
+ec-gpu = { version = "0.2.0" }
+ec-gpu-gen = { version = "0.5.1" }
+## DO NOT COMMIT
 
 fs2 = { version = "0.4.3", optional = true }
 
@@ -57,7 +56,6 @@ subtle = "2.2.1"
 temp-env = "0.3.0"
 rand = { version = "0.8", default-features = false, features = ["std", "std_rng"] }
 itertools = "0.10.0"
-blstrs = { version = "0.6.0", features = ["__private_bench"] }
 
 [features]
 default = ["groth16"]
@@ -92,8 +90,16 @@ members = [
 ]
 
 [build-dependencies]
+## DO NOT COMMIT
 blstrs = { version = "0.6.0", features = ["__private_bench"] }
-#ec-gpu-gen = { version = "0.5.0" }
-#ec-gpu-gen = { path = "../ec-gpu/ec-gpu-gen" }
-ec-gpu-gen = { git = "https://github.com/leonardoalt/ec-gpu/" }
+ec-gpu-gen = { version = "0.5.0" }
+##DO NOT COMMIT 
 rustversion = "1.0.6"
+
+
+[patch.crates-io]
+## DO NOT COMMIT
+blstrs = { git = "https://github.com/huitseeker/blstrs", branch="WIP-0.13", features = ["__private_bench"] }
+ec-gpu = { git = "https://github.com/filecoin-project/ec-gpu/", branch="upgrade-ff-013" }
+ec-gpu-gen = { git = "https://github.com/filecoin-project/ec-gpu/", branch="upgrade-ff-013" }
+## DO NOT COMMIT

@@ -455,8 +455,8 @@ fn test_cs() {
     {
         let mut cs = cs.namespace(|| "test1");
         let mut cs = cs.namespace(|| "test2");
-        cs.alloc(|| "hehe", || Ok(Fr::one())).unwrap();
+        cs.alloc(|| "hehe", || Ok(Fr::ONE)).unwrap();
     }
 
-    assert!(cs.get("test1/test2/hehe") == Fr::one());
+    assert!(cs.get("test1/test2/hehe") == Fr::ONE);
 }

@@ -297,7 +297,7 @@ mod test {
 
         let window_size = 4;
 
-        let mut assignment = vec![Fr::zero(); 1 << window_size];
+        let mut assignment = vec![Fr::ZERO; 1 << window_size];
         let constants: Vec<_> = (0..(1 << window_size))
             .map(|_| Fr::random(&mut rng))
             .collect();
@@ -305,7 +305,7 @@ mod test {
         synth::<Fr, _>(window_size, &constants, &mut assignment);
 
         for b in 0..(1 << window_size) {
-            let mut acc = Fr::zero();
+            let mut acc = Fr::ZERO;
 
             for j in 0..(1 << window_size) {
                 if j & b == j {

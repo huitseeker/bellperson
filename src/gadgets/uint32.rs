@@ -626,9 +626,9 @@ mod test {
 
             // Flip a bit and see if the addition constraint still works
             if cs.get("addition/result bit 0/boolean").is_zero().into() {
-                cs.set("addition/result bit 0/boolean", Field::one());
+                cs.set("addition/result bit 0/boolean", Field::ONE);
             } else {
-                cs.set("addition/result bit 0/boolean", Field::zero());
+                cs.set("addition/result bit 0/boolean", Field::ZERO);
             }
 
             assert!(!cs.is_satisfied());

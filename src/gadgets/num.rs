@@ -508,9 +508,9 @@ mod test {
     fn test_allocated_num() {
         let mut cs = TestConstraintSystem::<Fr>::new();
 
-        AllocatedNum::alloc(&mut cs, || Ok(Fr::one())).unwrap();
+        AllocatedNum::alloc(&mut cs, || Ok(Fr::ONE)).unwrap();
 
-        assert!(cs.get("num") == Fr::one());
+        assert!(cs.get("num") == Fr::ONE);
     }
 
     #[test]
@@ -592,14 +592,14 @@ mod test {
         {
             let mut cs = TestConstraintSystem::<Fr>::new();
 
-            let n = AllocatedNum::alloc(&mut cs, || Ok(Fr::zero())).unwrap();
+            let n = AllocatedNum::alloc(&mut cs, || Ok(Fr::ZERO)).unwrap();
             assert!(n.assert_nonzero(&mut cs).is_err());
         }
     }
 
     #[test]
     fn test_into_bits_strict() {
-        let negone = -Fr::one();
+        let negone = -Fr::ONE;
 
         let mut cs = TestConstraintSystem::<Fr>::new();
 
@@ -609,7 +609,7 @@ mod test {
         assert!(cs.is_satisfied());
 
         // make the bit representation the characteristic
-        cs.set("bit 254/boolean", Fr::one());
+        cs.set("bit 254/boolean", Fr::ONE);
 
         // this makes the conditional boolean constraint fail
         assert_eq!(
@@ -658,7 +658,7 @@ mod test {
             for i in 0..Fr::NUM_BITS {
                 let name = format!("bit {}/boolean", i);
                 let cur = cs.get(&name);
-                let mut tmp = Fr::one();
+                let mut tmp = Fr::ONE;
                 tmp.sub_assign(&cur);
                 cs.set(&name, tmp);
                 assert!(!cs.is_satisfied());
@@ -681,8 +681,8 @@ mod test {
 
         let mut lc = LinearCombination::<Fr>::zero();
 
-        let mut expected_sums = vec![Fr::zero(); n];
-        let mut value = Fr::zero();
+        let mut expected_sums = vec![Fr::ZERO; n];
+        let mut value = Fr::ZERO;
         for (i, expected_sum) in expected_sums.iter_mut().enumerate() {
             let coeff = Fr::random(&mut rng);
             lc = lc + (coeff, Variable::new_unchecked(Index::Aux(i)));

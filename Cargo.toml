@@ -92,3 +92,6 @@ members = [
 blstrs = { version = "0.7.0", features = ["__private_bench"] }
 ec-gpu-gen = { version = "0.6.0" }
 rustversion = "1.0.6"
+
+[patch.crates-io]
+ec-gpu-gen = { git = "https://github.com/huitseeker/ec-gpu", branch = "extend_api" }
